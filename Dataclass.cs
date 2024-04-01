@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Security.RightsManagement;
@@ -118,6 +119,30 @@ namespace Project
             return users;
         }
 
+        public List<Family> LoadFamilies(List<Family> families, string file)
+        {
+            FileStream fs1 = new FileStream(file, FileMode.Open);
+            {
+                families = (List<Family>)JsonSerializer.Deserialize(fs1, typeof(List<Family>));
+                fs1.Close();
+            }
+            return families;
+        }
+
+        public User GetUserByEmail(string findemail)
+        {
+            List<User> users = new List<User>();
+            users = this.LoadUsers(users, "users.json");
+            foreach(User user in users)
+            {
+                if (user.Email == findemail)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
+
         public void RegistrateUser(string email, string password, string name, double income, string file)
         {
             bool inUser = false;
@@ -155,6 +180,172 @@ namespace Project
                     MessageBox.Show("Пользователь добавлен!");
                     fs2.Close();
                 }
+            }
+        }
+
+        public void CreateFamily(string file, User user)
+        {
+            List<Family> families = new List<Family>();
+            List<User> users = new List<User>();
+            users = LoadUsers(users, "users.json");
+            if (!System.IO.File.Exists(file))
+            {
+                FileStream fs1 = new FileStream(file, FileMode.Create);
+                Family family = new Family();
+                family.MembersID.Add(user.ID);
+                families.Add(family);
+                JsonSerializer.Serialize(fs1, families);
+                fs1.Close();
+                foreach(User user1 in users)
+                {
+                    if (user1.ID == user.ID)
+                    {
+                        user1.FamilyID = family.ID_family;
+                        break;
+                    }
+                }
+                FileStream fs2 = new FileStream("users.json", FileMode.Truncate);
+                JsonSerializer.Serialize(fs2, users);
+                fs2.Close();
+                MessageBox.Show("Файл и семья созданы!");
+            }
+            else
+            {
+                families = LoadFamilies(families, file);
+                FileStream fs2 = new FileStream(file, FileMode.Truncate);
+                Family family = new Family();
+                family.MembersID.Add(user.ID);
+                families.Add(family);
+                JsonSerializer.Serialize(fs2, families);
+                fs2.Close();
+                foreach (User user1 in users)
+                {
+                    if (user1.ID == user.ID)
+                    {
+                        user1.FamilyID = family.ID_family;
+                        break;
+                    }
+                }
+                FileStream fs1 = new FileStream("users.json", FileMode.Truncate);
+                JsonSerializer.Serialize(fs1, users);
+                fs1.Close();
+                MessageBox.Show("Семья добавлена!");
+            }
+        }
+
+        public void AddToFamily(string addUserID, string addFamilyID)
+        {
+            bool userExist = false;
+            List<User> users = new List<User>();
+            users = LoadUsers(users, "users.json");
+            foreach (User user in users)
+            {
+                if (addUserID == user.ID)
+                {
+                    userExist = true;
+                    break;
+                }
+            }
+            if (userExist)
+            {
+                List<Family> families = new List<Family>();
+                families = LoadFamilies(families, "families.json");
+                foreach (Family family in families)
+                {
+                    foreach (string userID in family.MembersID)
+                    {
+                        if (userID == addUserID)
+                        {
+                            MessageBox.Show("Этот пользователь уже есть в семье");
+                            return;
+                        }
+                    }
+                }
+                foreach (Family family in families)
+                {
+                    if (family.ID_family == addFamilyID)
+                    {
+                        family.MembersID.Add(addUserID);
+                        foreach (User user in users)
+                        {
+                            if (user.ID == addUserID)
+                            {
+                                user.FamilyID = addFamilyID;
+                                break;
+                            }
+                        }
+                        FileStream fs2 = new FileStream("users.json", FileMode.Truncate);
+                        JsonSerializer.Serialize(fs2, users);
+                        fs2.Close();
+                        FileStream fs1 = new FileStream("families.json", FileMode.Truncate);
+                        JsonSerializer.Serialize(fs1, families);
+                        fs1.Close();
+                        MessageBox.Show("Пользователь добавлен");
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пользователь не найден");
+                return;
+            }
+        }
+
+        public void DeleteFromFamily(string deleteUserID, string deleteFamilyID)
+        {
+            bool userExist = false;
+            List<User> users = new List<User>();
+            List<Family> families = new List<Family>();
+            families = LoadFamilies(families, "families.json");
+            users = LoadUsers(users, "users.json");
+            foreach (User user in users)
+            {
+                if (deleteUserID == user.ID && deleteFamilyID == user.FamilyID)
+                {
+                    userExist = true;
+                    break;
+                }
+            }
+            if (userExist)
+            {
+                families = LoadFamilies(families, "families.json");
+                foreach (Family family in families)
+                {
+                    if (family.ID_family == deleteFamilyID)
+                    {
+                        foreach (User user in users)
+                        {
+                            if (user.ID == deleteUserID)
+                            {
+                                if (user.ID == family.MembersID[0])
+                                {
+                                    MessageBox.Show("Вы не можете удалить самого себя");
+                                    return;
+                                }
+                                else
+                                {
+                                    family.MembersID.Remove(deleteUserID);
+                                    user.FamilyID = null;
+                                    break;
+                                }
+                            }
+                        }
+                        FileStream fs2 = new FileStream("users.json", FileMode.Truncate);
+                        JsonSerializer.Serialize(fs2, users);
+                        fs2.Close();
+                        FileStream fs1 = new FileStream("families.json", FileMode.Truncate);
+                        JsonSerializer.Serialize(fs1, families);
+                        fs1.Close();
+                        MessageBox.Show("Пользователь удалён");
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пользователь не найден");
+                return;
             }
         }
     }

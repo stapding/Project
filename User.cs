@@ -14,7 +14,9 @@ namespace Project
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public Family Family { get; set; }
+        public string ImageAvatar { get; set; }
+        public string FamilyID { get; set; }
+        public List<Report> Reports { get; set; }
 
 
         public User(string id, double income, string name, string email, string password)
@@ -24,7 +26,9 @@ namespace Project
             this.Name = name;
             this.Email = email;
             this.Password = password;
-            this.Family = null;
+            this.FamilyID = null;
+            this.Reports = null;
+            this.ImageAvatar = null;
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Project
                 {
                     MessageBox.Show($"{user.Name} вошёл в систему");
                     TextBlock userFI = (TextBlock)Application.Current.MainWindow.FindName("isRegistrated");
-                    userFI.Text = "T";
+                    userFI.Text = user.Email;
                     userFound = true;
                     break;
                 }

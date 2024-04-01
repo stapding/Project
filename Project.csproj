@@ -90,16 +90,27 @@
       <DependentUpon>CreateReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dataclass.cs" />
+    <Compile Include="EditProfile.xaml.cs">
+      <DependentUpon>EditProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Family.cs" />
+    <Compile Include="Profile.xaml.cs">
+      <DependentUpon>Profile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Report.cs" />
     <Compile Include="User.cs" />
     <Page Include="Authorization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,6 +126,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Profile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Registration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,6 +186,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\calendar-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NoAvatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\editpng.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\upload-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\clipboard-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

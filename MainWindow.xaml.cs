@@ -38,7 +38,7 @@ namespace Project
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (isRegistrated.Text == "T")
+            if (isRegistrated.Text != "F")
             {
                 MainFrame.Navigate(new CreateReport(MainFrame));
             }
@@ -53,6 +53,18 @@ namespace Project
             if (MainFrame.Content.GetType() == typeof(Registration) || MainFrame.Content.GetType() == typeof(Authorization))
             {
                 isRegistrated.Text = "F";
+            }
+        }
+
+        private void TextBlock_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            if (isRegistrated.Text != "F")
+            {
+                MainFrame.Navigate(new Profile(MainFrame));
+            }
+            else
+            {
+                MessageBox.Show("Для начала войдите в аккаунт или создайте его");
             }
         }
     }

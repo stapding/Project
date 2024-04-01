@@ -8,10 +8,13 @@ namespace Project
 {
     public class Family
     {
-        public List<User> Members { get; set; }
+        public string ID_family { get; set; } 
+        public List<string> MembersID { get; set; }
         public Family()
         {
-            
+            MembersID = new List<string>();
+            string uuid = Guid.NewGuid().ToString();
+            ID_family = uuid;
         }
     }
 }
