@@ -9,6 +9,227 @@
       Title="CreateReport">
 
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Тут пока ничего нет." FontSize="25" FontWeight="Bold"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock Text="Создание отчёта" FontFamily="Cascadia Code SemiBold" FontSize="40" TextAlignment="Center" Grid.ColumnSpan="2"/>
+                <TextBlock Text="(Вы можете навести на название категории чтобы посмотреть подробности)" FontFamily="Cascadia Code SemiBold" TextAlignment="Center" Grid.ColumnSpan="2"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,5,0">
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Автомобиль" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (бензин, мойка, ремонт, запчасти, страховка, стоянка, техосмотр, налоги, штрафы, парковка)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Бизнес" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (налоги, зарплата, реклама, офис и канцелярия, услуги)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Благотворительность, подарки, помощь" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (пожертвования, взносы в благотворительные фонды, материальная помощь родителям/друзьям)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Дети" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (одежда, питание, игрушки, книги, няня, мебель, услуги, развлечения)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Домашние животные" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (питание, товары для животных, услуги ветеринара)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Здоровье и красота" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (косметика, парфюмерия, салоны красоты, спорт, лекарства, услуги)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Ипотека, долги, кредиты" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (выплата по кредиту, выплата по ипотеке, досрочное гашение долга, покрытие процентов)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Квартира и связь" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (электричество, вода, тепло, газ, радио, телефон, интернет, аренда, вывоз мусора, кабельное телевидение, охрана, консьерж)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Налоги и страхование" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (выплата по налогам, выплаты по страховке)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Образование" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (учебники, канцтовары, плата за обучение, репетитор)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Одежда и аксессуары" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (одежда, обувь, аксессуары, украшения, химчистка, ателье, ремонт обуви)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Отдых и развлечения" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (игры, фильмы, книги, диски, журналы, кафе и рестораны, кино, фото, театр, выставки, боулинг)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Питание" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (основные продукты, деликатесы, алкоголь, еда на работе, школьные завтраки)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Разное" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (служебные расходы, карманные расходы, чаевые, взносы, банковские комиссии, нотариус, утеря денег, доставка товара)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Ремонт и мебель" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (закупка материалов или инструментов для ремонты мебели, вызов мастера по ремонту, закупка мебели)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Товары для дома" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (белье, мелкая техника, инструменты, посуда, кухонная утварь, товары для ванной, предметы интерьера)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Транспорт" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (автобус, проездные, авиа, метро, такси, электричка)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Хобби" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (ваши затраты на хобби)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Height="35" Margin="0 10 0 0">
+                            <TextBlock Margin="0 10 0 0" Text="Бытовая техника, компьютер, материалы" TextAlignment="Right">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>
+                                        (ремонт техники/компьютера, расходные материалы, прочяя бытовая техника)
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Left">
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                        <TextBox  Tag="Введите затраты" Style="{StaticResource tbox_AlertIconPlaceholder}"/>
+                    </StackPanel>
+                </Grid>
+                <Button Width="100" Height="25" Background="Transparent" Content="Создать" Margin="0,10,0,0" Grid.ColumnSpan="2">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border BorderThickness="2" CornerRadius="10" BorderBrush="Black">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

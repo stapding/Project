@@ -52,6 +52,53 @@
             </Setter>
         </Style>
 
+        <ImageBrush x:Key="ib_AlertAct" ImageSource="/Images/alert-circle.png"/>
+
+        <Style x:Key="tbox_AlertIconPlaceholder" TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Padding" Value="0 5 5 4"/>
+            <Setter Property="Margin" Value="0 10 0 0"/>
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="TxtBorder" BorderBrush="Black" BorderThickness="2" CornerRadius="5" SnapsToDevicePixels="True">
+                            <Grid Margin="{TemplateBinding Padding}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <ScrollViewer x:Name="PART_ContentHost" Focusable="False" Grid.Column="1" Margin="5 0 0 0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                <Border Background="{StaticResource ib_AlertAct}" BorderThickness="0" Height="15" Width="15" Margin="5 0 0 3" HorizontalAlignment="Center" VerticalAlignment="Center" ToolTip="Name" Cursor="Arrow" Grid.Column="0"/>
+                                <Label x:Name="Watermark" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Gray" Visibility="Collapsed" Padding="5 0 20 0" Content="{TemplateBinding Tag}" Grid.Column="1"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#FF212121"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="BorderThickness" Value="0.5 0.5 0.5 3" TargetName="TxtBorder"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" Value="Visible" TargetName="Watermark"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <ImageBrush x:Key="ib_EmailAct" ImageSource="/Images/EmailIcon.png"/>
 
         <Style x:Key="tbox_EmailIconPlaceholder" TargetType="{x:Type TextBox}">
