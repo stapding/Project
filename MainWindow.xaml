@@ -15,7 +15,7 @@
         <Rectangle Grid.Row="1" Fill="White"/>
 
         <TextBlock Grid.Row="0" HorizontalAlignment="Left" Foreground="White" Name="textBlock" Text="Создать отчёт" VerticalAlignment="Center" FontSize="20" Margin="20,0,0,0"/>
-        <TextBlock Grid.Row="0" Foreground="White" Text="{Binding ElementName=textBlock, Path=Text}" TextDecorations="Underline" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="20,0,0,0">
+        <TextBlock Grid.Row="0" Foreground="White" Text="{Binding ElementName=textBlock, Path=Text}" TextDecorations="Underline" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="20,0,0,0" MouseDown="TextBlock_MouseDown">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
                     <Setter Property="Opacity" Value="0" />
@@ -114,6 +114,8 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+        <TextBlock x:Name="isRegistrated" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="F" Visibility="Hidden"/>
+
+        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated"/>
     </Grid>
 </Window>

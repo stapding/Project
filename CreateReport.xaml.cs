@@ -20,9 +20,11 @@ namespace Project
     /// </summary>
     public partial class CreateReport : Page
     {
-        public CreateReport()
+        public Frame MainFrame { get; set; }
+        public CreateReport(Frame mf)
         {
             InitializeComponent();
+            MainFrame = mf;
         }
     }
 }

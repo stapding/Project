@@ -20,6 +20,7 @@ namespace Project
     /// </summary>
     public partial class Authorization : Page
     {
+        public Dataclass data = new Dataclass();
         public Frame MainFrame { get; set; }
         public Authorization(Frame mf)
         {
@@ -30,6 +31,41 @@ namespace Project
         private void btn_Reg_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MainFrame.Navigate(new Registration(MainFrame));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            bool userFound = false;
+            List<User> userss = new List<User>();
+
+            userss = data.LoadUsers(userss, "users.json");
+
+            foreach (User user in userss)
+            {
+                if (user.Email == tbEmail.Text && user.Password == tbPassword.Text)
+                {
+                    MessageBox.Show($"{user.Name} вошёл в систему");
+                    TextBlock userFI = (TextBlock)Application.Current.MainWindow.FindName("isRegistrated");
+                    userFI.Text = "T";
+                    userFound = true;
+                    break;
+                }
+
+            }
+
+            if (!userFound)
+            {
+                MessageBox.Show("Вы ввели неверный Email/Логин или Пароль.");
+            }
+
+            if (userFound)
+            {
+                if (MainFrame != null)
+                {
+                    MainFrame.Navigate(new CreateReport(MainFrame));
+                }
+
+            }
         }
     }
 }

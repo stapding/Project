@@ -11,8 +11,8 @@
     <Grid>
         <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Авторизация" FontFamily="Cascadia Code SemiBold" FontSize="40" TextAlignment="Center"/>
-            <TextBox Tag="Эмейл" Style="{StaticResource tbox_EmailIconPlaceholder}"/>
-            <TextBox Tag="Пароль" Style="{StaticResource tbox_PassIconPlaceholder}"/>
+            <TextBox x:Name="tbEmail" Tag="Эмейл" Style="{StaticResource tbox_EmailIconPlaceholder}"/>
+            <TextBox x:Name="tbPassword" Tag="Пароль" Style="{StaticResource tbox_PassIconPlaceholder}"/>
             <WrapPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
                 <TextBlock Text="Нет аккаунта? " FontSize="10"/>
                 <TextBlock x:Name="btn_Reg" Text="Создать" FontSize="10" Foreground="#FF64B6FF" Margin="0,0,5,0" MouseDown="btn_Reg_MouseDown">
@@ -27,7 +27,7 @@
                     </TextBlock.Style>
                 </TextBlock>
             </WrapPanel>
-            <Button Width="100" Height="25" Background="Transparent" Content="Готово" Margin="0,5,0,0">
+            <Button Width="100" Height="25" Background="Transparent" Content="Готово" Margin="0,5,0,0" Click="Button_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border BorderThickness="2" CornerRadius="10" BorderBrush="Black">

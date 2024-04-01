@@ -40,7 +40,7 @@ namespace Project
             string againpassword = tbPasswordAgain.Text;
             string name = tbName.Text;
             string income = tbIncome.Text;
-            if (!data.ValidateFields(email, password, againpassword, fio, income, passport, login))
+            if (!data.ValidateFields(email, password, againpassword, name, income))
             {
                 MessageBox.Show("Поля пустые");
                 return;
@@ -67,6 +67,7 @@ namespace Project
             }
             double convertedIncome = Double.Parse(income);
             data.RegistrateUser(email, password, name, convertedIncome, "users.json");
+            MainFrame.Navigate(new Authorization(MainFrame));
         }
     }
 }
