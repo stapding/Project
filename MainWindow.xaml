@@ -90,7 +90,7 @@
         </TextBlock>
 
         <TextBlock Grid.Row="0" HorizontalAlignment="Right" Foreground="White" Name="textBlock3" Text="Назад" VerticalAlignment="Center" FontSize="20" Margin="0,0,30,0"/>
-        <TextBlock Grid.Row="0" Foreground="White" Text="{Binding ElementName=textBlock3, Path=Text}" TextDecorations="Underline" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Margin="0,0,30,0">
+        <TextBlock x:Name="btn_Back" Grid.Row="0" Foreground="White" Text="{Binding ElementName=textBlock3, Path=Text}" TextDecorations="Underline" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Margin="0,0,30,0" MouseDown="btn_Back_MouseDown">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
                     <Setter Property="Opacity" Value="0" />

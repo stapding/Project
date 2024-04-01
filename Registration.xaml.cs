@@ -20,11 +20,53 @@ namespace Project
     /// </summary>
     public partial class Registration : Page
     {
+        public Dataclass data = new Dataclass();
         public Frame MainFrame { get; set; }
         public Registration(Frame mf)
         {
             InitializeComponent();
             MainFrame = mf;
+        }
+
+        private void btn_Auth_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Navigate(new Authorization(MainFrame));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string email = tbEmail.Text;
+            string password = tbPassword.Text;
+            string againpassword = tbPasswordAgain.Text;
+            string name = tbName.Text;
+            string income = tbIncome.Text;
+            if (!data.ValidateFields(email, password, againpassword, fio, income, passport, login))
+            {
+                MessageBox.Show("Поля пустые");
+                return;
+            }
+            if (!data.ValidateEmail(email))
+            {
+                MessageBox.Show("Неверный формат Email'а");
+                return;
+            }
+            if (!data.ValidatePassword(password, againpassword))
+            {
+                MessageBox.Show("Неверный формат пароля или пароли не совпадают");
+                return;
+            }
+            if (!data.ValidateName(name))
+            {
+                MessageBox.Show("Имя должно быть < 20 символов");
+                return;
+            }
+            if (!data.ValidateIncome(income))
+            {
+                MessageBox.Show("Неверный формат дохода");
+                return;
+            }
+            double convertedIncome = Double.Parse(income);
+            data.RegistrateUser(email, password, name, convertedIncome, "users.json");
         }
     }
 }

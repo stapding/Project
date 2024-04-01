@@ -16,22 +16,13 @@ using System.Windows.Shapes;
 namespace Project
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для CreateReport.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CreateReport : Page
     {
-        public MainWindow()
+        public CreateReport()
         {
             InitializeComponent();
-            MainFrame.Navigate(new Registration(MainFrame));
-        }
-
-        private void btn_Back_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if(MainFrame.CanGoBack)
-            {
-                MainFrame.GoBack();
-            }
         }
     }
 }

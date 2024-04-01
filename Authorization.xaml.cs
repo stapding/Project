@@ -16,22 +16,20 @@ using System.Windows.Shapes;
 namespace Project
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Authorization.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Authorization : Page
     {
-        public MainWindow()
+        public Frame MainFrame { get; set; }
+        public Authorization(Frame mf)
         {
             InitializeComponent();
-            MainFrame.Navigate(new Registration(MainFrame));
+            MainFrame = mf;
         }
 
-        private void btn_Back_MouseDown(object sender, MouseButtonEventArgs e)
+        private void btn_Reg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(MainFrame.CanGoBack)
-            {
-                MainFrame.GoBack();
-            }
+            MainFrame.Navigate(new Registration(MainFrame));
         }
     }
 }
