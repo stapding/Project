@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Globalization;
+
 
 namespace Project
 {
@@ -25,6 +27,10 @@ namespace Project
         {
             InitializeComponent();
             MainFrame = mf;
+            CultureInfo russianCulture = new CultureInfo("ru-RU");
+            DateTime now = DateTime.Now;
+            string monthName = now.ToString("MMMM", russianCulture);
+            tbDate.Text = monthName;
         }
     }
 }
