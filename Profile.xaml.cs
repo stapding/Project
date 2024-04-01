@@ -124,6 +124,9 @@ namespace Project
             newBTN2.Content = "Удалить";
             newBTN2.Click += new RoutedEventHandler(Button_Click_Delete);
             stackPanelFamily.Children.Add(newBTN2);
+            TextBlock userFI = (TextBlock)Application.Current.MainWindow.FindName("isRegistrated");
+            currentUser = data.GetUserByEmail(userFI.Text);
+            MessageBox.Show(currentUser.FamilyID);
         }
 
         private void Button_Click_Add(object sender, RoutedEventArgs e)
@@ -148,6 +151,22 @@ namespace Project
             {
                 Clipboard.SetText(textGUIDUser.Text);
                 MessageBox.Show("Скопировано!");
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            TextBlock userFI = (TextBlock)Application.Current.MainWindow.FindName("isRegistrated");
+            currentUser = data.GetUserByEmail(userFI.Text);
+            textNameUser.Text = currentUser.Name;
+            textIncomeUser.Text = $"Доход: {currentUser.Income} ₽";
+            if (File.Exists(currentUser.ImageAvatar))
+            {
+                blockImageOfProfile.ImageSource = new BitmapImage(new Uri(currentUser.ImageAvatar));
+            }
+            else
+            {
+                blockImageOfProfile.ImageSource = new BitmapImage(new Uri("C:/Users/МОиБД/source/Project/Project/Images/NoAvatar.png"));
             }
         }
     }
