@@ -16,14 +16,15 @@ using System.Windows.Shapes;
 namespace Project
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Registration.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Registration : Page
     {
-        public MainWindow()
+        public Frame MainFrame { get; set; }
+        public Registration(Frame mf)
         {
             InitializeComponent();
-            MainFrame.Navigate(new Registration(MainFrame));
+            MainFrame = mf;
         }
     }
 }

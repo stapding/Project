@@ -5,8 +5,115 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="VerFinance" Icon="/Images/MiniLogo.png" Height="800" Width="1300" ResizeMode="NoResize">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0" Fill="Black"/>
+        <Rectangle Grid.Row="1" Fill="White"/>
+
+        <TextBlock Grid.Row="0" HorizontalAlignment="Left" Foreground="White" Name="textBlock" Text="Создать отчёт" VerticalAlignment="Center" FontSize="20" Margin="20,0,0,0"/>
+        <TextBlock Grid.Row="0" Foreground="White" Text="{Binding ElementName=textBlock, Path=Text}" TextDecorations="Underline" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="20,0,0,0">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Opacity" Value="0" />
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.5" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <TextBlock Grid.Row="0" HorizontalAlignment="Left" Foreground="White" Name="textBlock1" Text="Список отчётов" VerticalAlignment="Center" FontSize="20" Margin="180,0,0,0"/>
+        <TextBlock Grid.Row="0" Foreground="White" Text="{Binding ElementName=textBlock1, Path=Text}" TextDecorations="Underline" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="180,0,0,0">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Opacity" Value="0" />
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.5" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <TextBlock Grid.Row="0" HorizontalAlignment="Left" Foreground="White" Name="textBlock2" Text="Профиль" VerticalAlignment="Center" FontSize="20" Margin="355,0,0,0"/>
+        <TextBlock Grid.Row="0" Foreground="White" Text="{Binding ElementName=textBlock2, Path=Text}" TextDecorations="Underline" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="355,0,0,0">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Opacity" Value="0" />
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.5" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <TextBlock Grid.Row="0" HorizontalAlignment="Right" Foreground="White" Name="textBlock3" Text="Назад" VerticalAlignment="Center" FontSize="20" Margin="0,0,30,0"/>
+        <TextBlock Grid.Row="0" Foreground="White" Text="{Binding ElementName=textBlock3, Path=Text}" TextDecorations="Underline" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Margin="0,0,30,0">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Opacity" Value="0" />
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.5" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
