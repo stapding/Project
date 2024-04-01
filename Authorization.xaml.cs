@@ -38,7 +38,7 @@ namespace Project
             bool userFound = false;
             List<User> userss = new List<User>();
 
-            userss = data.LoadUsers(userss, "users.json");
+            userss = data.LoadUsers("users.json");
 
             foreach (User user in userss)
             {

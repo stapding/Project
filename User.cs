@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Project
@@ -19,10 +20,10 @@ namespace Project
         public List<Report> Reports { get; set; }
 
 
-        public User(string id, double income, string name, string email, string password)
+        public User(string id, double Income, string name, string email, string password)
         {
             this.ID = id;
-            this.Income = income;
+            this.Income = Income;
             this.Name = name;
             this.Email = email;
             this.Password = password;

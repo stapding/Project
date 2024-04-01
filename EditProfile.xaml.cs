@@ -55,7 +55,7 @@ namespace Project
             if (data.ValidateIncome(tbIncome.Text) && data.ValidateName(tbName.Text))
             {
                 List<User> users = new List<User>();
-                users = data.LoadUsers(users, "users.json");
+                users = data.LoadUsers("users.json");
                 foreach (User user in users)
                 {
                     if (user.ID == currentUser.ID)

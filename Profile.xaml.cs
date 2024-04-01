@@ -32,7 +32,6 @@ namespace Project
             InitializeComponent();
             MainFrame = mf;
             TextBlock userFI = (TextBlock)Application.Current.MainWindow.FindName("isRegistrated");
-            MessageBox.Show(userFI.Text);
             currentUser = data.GetUserByEmail(userFI.Text);
             if (currentUser != null)
             {
@@ -126,7 +125,6 @@ namespace Project
             stackPanelFamily.Children.Add(newBTN2);
             TextBlock userFI = (TextBlock)Application.Current.MainWindow.FindName("isRegistrated");
             currentUser = data.GetUserByEmail(userFI.Text);
-            MessageBox.Show(currentUser.FamilyID);
         }
 
         private void Button_Click_Add(object sender, RoutedEventArgs e)

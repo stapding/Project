@@ -109,14 +109,12 @@ namespace Project
             }
         }
 
-        public List<User> LoadUsers(List<User> users, string file)
+        public List<User> LoadUsers(string file)
         {
-            FileStream fs1 = new FileStream(file, FileMode.Open);
+            using (FileStream fs1 = new FileStream(file, FileMode.Open))
             {
-                users = (List<User>)JsonSerializer.Deserialize(fs1, typeof(List<User>));
-                fs1.Close();
+                return (List<User>)JsonSerializer.Deserialize(fs1, typeof(List<User>));
             }
-            return users;
         }
 
         public List<Family> LoadFamilies(List<Family> families, string file)
@@ -132,7 +130,7 @@ namespace Project
         public User GetUserByEmail(string findemail)
         {
             List<User> users = new List<User>();
-            users = this.LoadUsers(users, "users.json");
+            users = this.LoadUsers("users.json");
             foreach(User user in users)
             {
                 if (user.Email == findemail)
@@ -160,7 +158,7 @@ namespace Project
             }
             else
             {
-                userss = LoadUsers(userss, file);
+                userss = LoadUsers(file);
 
                 foreach (User user in userss)
                 {
@@ -187,7 +185,7 @@ namespace Project
         {
             List<Family> families = new List<Family>();
             List<User> users = new List<User>();
-            users = LoadUsers(users, "users.json");
+            users = LoadUsers("users.json");
             if (!System.IO.File.Exists(file))
             {
                 FileStream fs1 = new FileStream(file, FileMode.Create);
@@ -237,7 +235,7 @@ namespace Project
         {
             bool userExist = false;
             List<User> users = new List<User>();
-            users = LoadUsers(users, "users.json");
+            users = LoadUsers("users.json");
             foreach (User user in users)
             {
                 if (addUserID == user.ID)
@@ -298,7 +296,7 @@ namespace Project
             List<User> users = new List<User>();
             List<Family> families = new List<Family>();
             families = LoadFamilies(families, "families.json");
-            users = LoadUsers(users, "users.json");
+            users = LoadUsers("users.json");
             foreach (User user in users)
             {
                 if (deleteUserID == user.ID && deleteFamilyID == user.FamilyID)
