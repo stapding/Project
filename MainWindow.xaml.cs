@@ -27,6 +27,7 @@ namespace WPFModernVerticalMenu
             InitializeComponent();
 
             Application.Current.Properties["MainFrame"] = fContainer;
+            fContainer.Navigate(new System.Uri("Pages/Home.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -31,9 +31,7 @@ namespace WPFModernVerticalMenu.Classes
 
         public bool ValidateEmail(string email)
         {
-            string cond = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
-                        + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)"
-                        + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
+            string cond = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
             Regex regex = new Regex(cond);
             return regex.IsMatch(email);
         }

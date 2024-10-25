@@ -40,10 +40,17 @@ namespace WPFModernVerticalMenu.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg";
             if (openFileDialog.ShowDialog() == true)
             {
-                tbAvatar.Text = openFileDialog.FileName;
+                if (File.Exists(openFileDialog.FileName))
+                {
+                    tbAvatar.Text = openFileDialog.FileName;
+                }
+                else
+                {
+                    MessageBox.Show("Выбранный файл не существует.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
@@ -51,22 +58,35 @@ namespace WPFModernVerticalMenu.Pages
         {
             if (data.ValidateIncome(tbIncome.Text) && data.ValidateName(tbName.Text))
             {
-                List<User> users = new List<User>();
-                users = data.LoadUsers("users.json");
-                foreach (User user in users)
+                // Проверяем, что путь указывает на файл с допустимым расширением
+                string filePath = tbAvatar.Text;
+                string fileExtension = System.IO.Path.GetExtension(filePath).ToLower();
+
+                if (fileExtension == ".png" || fileExtension == ".jpeg" || fileExtension == ".jpg")
                 {
-                    if (user.ID == currentUser.ID)
+                    List<User> users = data.LoadUsers("users.json");
+                    foreach (User user in users)
                     {
-                        user.Income = Double.Parse(tbIncome.Text);
-                        user.Name = tbName.Text;
-                        user.ImageAvatar = tbAvatar.Text;
-                        break;
+                        if (user.ID == currentUser.ID)
+                        {
+                            user.Income = double.Parse(tbIncome.Text);
+                            user.Name = tbName.Text;
+                            user.ImageAvatar = tbAvatar.Text;
+                            break;
+                        }
                     }
+
+                    using (FileStream fs1 = new FileStream("users.json", FileMode.Truncate))
+                    {
+                        JsonSerializer.Serialize(fs1, users);
+                    }
+
+                    MessageBox.Show("Данные пользователя обновлены!");
                 }
-                FileStream fs1 = new FileStream("users.json", FileMode.Truncate);
-                JsonSerializer.Serialize(fs1, users);
-                fs1.Close();
-                MessageBox.Show("Данные пользователя обновлены!");
+                else
+                {
+                    MessageBox.Show("Указанный файл должен быть формата PNG, JPEG или JPG.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }

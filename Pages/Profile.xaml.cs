@@ -46,6 +46,7 @@ namespace WPFModernVerticalMenu.Pages
                         TextBox newTB1 = new TextBox();
                         Style styleForTB = (Style)Application.Current.FindResource("tbox_AlertIconPlaceholder");
                         newTB1.Name = "tbAddUser";
+                        newTB1.Tag = "GUID пользователя";
                         newTB1.Style = styleForTB;
                         stackPanelFamily.Children.Add(newTB1);
 
@@ -98,6 +99,7 @@ namespace WPFModernVerticalMenu.Pages
             Style styleForTB = (Style)Application.Current.FindResource("tbox_AlertIconPlaceholder");
             newTB1.Name = "tbAddUser";
             newTB1.Style = styleForTB;
+            newTB1.Tag = "GUID пользователя";
             stackPanelFamily.Children.Add(newTB1);
 
             Button newBTN1 = new Button();
@@ -138,10 +140,19 @@ namespace WPFModernVerticalMenu.Pages
         {
             if (textGUIDUser.Text != null)
             {
-                Clipboard.SetText(textGUIDUser.Text);
+                string text = textGUIDUser.Text;
+
+                // Проверяем, начинается ли текст с "GUID: "
+                if (text.StartsWith("GUID: "))
+                {
+                    text = text.Substring(6); // Убираем первые 6 символов "GUID: "
+                }
+
+                Clipboard.SetText(text);
                 MessageBox.Show("Скопировано!");
             }
         }
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {

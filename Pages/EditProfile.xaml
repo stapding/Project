@@ -34,7 +34,7 @@
                         <TextBox x:Name="tbIncome" Tag="Введите доход" Style="{StaticResource tbox_AlertIconPlaceholder}" HorizontalAlignment="Left" Foreground="White"/>
                         <TextBox x:Name="tbName" Tag="Введите имя" Style="{StaticResource tbox_AlertIconPlaceholder}" HorizontalAlignment="Left" Foreground="White"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBox x:Name="tbAvatar" Tag="Введите путь к фото" Style="{StaticResource tbox_AlertIconPlaceholder}" Foreground="White"/>
+                            <TextBox x:Name="tbAvatar" Tag="Путь к фото" Style="{StaticResource tbox_AlertIconPlaceholder}" Foreground="White"/>
                             <Button Style="{StaticResource roundedButton}" Margin="5,0,0,5" Content="..." Width="25" Background="White" Foreground="White" Click="Button_Click"/>
                         </StackPanel>
                     </StackPanel>
