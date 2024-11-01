@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Newtonsoft.Json;
 
 namespace WPFModernVerticalMenu.Classes
 {
@@ -109,9 +110,13 @@ namespace WPFModernVerticalMenu.Classes
 
         public List<User> LoadUsers(string file)
         {
-            using (FileStream fs1 = new FileStream(file, FileMode.Open))
+            using (FileStream fs = new FileStream(file, FileMode.Open))
             {
-                return (List<User>)JsonSerializer.Deserialize(fs1, typeof(List<User>));
+                using (StreamReader reader = new StreamReader(fs))
+                {
+                    string json = reader.ReadToEnd();
+                    return JsonConvert.DeserializeObject<List<User>>(json);
+                }
             }
         }
 
@@ -119,17 +124,21 @@ namespace WPFModernVerticalMenu.Classes
         {
             FileStream fs1 = new FileStream(file, FileMode.Open);
             {
-                families = (List<Family>)JsonSerializer.Deserialize(fs1, typeof(List<Family>));
+                families = (List<Family>)System.Text.Json.JsonSerializer.Deserialize(fs1, typeof(List<Family>));
                 fs1.Close();
             }
             return families;
         }
 
-        public User GetUserByEmail(string findemail)
+        public User GetUserByEmail(string findemail, string file)
         {
-            List<User> users = new List<User>();
-            users = this.LoadUsers("users.json");
-            foreach(User user in users)
+            if (!System.IO.File.Exists(file))
+            {
+                return null;
+            }
+
+            List<User> users = LoadUsers(file);
+            foreach (User user in users)
             {
                 if (user.Email == findemail)
                 {
@@ -145,13 +154,15 @@ namespace WPFModernVerticalMenu.Classes
             List<User> userss = new List<User>();
             if (!System.IO.File.Exists(file))
             {
-                FileStream fs1 = new FileStream(file, FileMode.Create);
+                using (FileStream fs1 = new FileStream(file, FileMode.Create))
                 {
                     string uuid = Guid.NewGuid().ToString();
                     userss.Add(new User(uuid, income, name, email, password));
-                    JsonSerializer.Serialize(fs1, userss);
-                    MessageBox.Show("Файл создан и пользователь добавлен!");
-                    fs1.Close();
+                    using (StreamWriter writer = new StreamWriter(fs1))
+                    {
+                        writer.Write(JsonConvert.SerializeObject(userss));
+                    }
+                    //MessageBox.Show("Файл создан и пользователь добавлен!");
                 }
             }
             else
@@ -162,19 +173,23 @@ namespace WPFModernVerticalMenu.Classes
                 {
                     if (user.Email == email)
                     {
-                        MessageBox.Show("Пользователь с таким Email'ом уже существует");
+                        //MessageBox.Show("Пользователь с таким Email'ом уже существует");
                         inUser = true;
                         break;
                     }
                 }
                 if (!inUser)
                 {
-                    FileStream fs2 = new FileStream(file, FileMode.Truncate);
-                    string uuid = Guid.NewGuid().ToString();
-                    userss.Add(new User(uuid, income, name, email, password));
-                    JsonSerializer.Serialize(fs2, userss);
-                    MessageBox.Show("Пользователь добавлен!");
-                    fs2.Close();
+                    using (FileStream fs2 = new FileStream(file, FileMode.Truncate))
+                    {
+                        string uuid = Guid.NewGuid().ToString();
+                        userss.Add(new User(uuid, income, name, email, password));
+                        using (StreamWriter writer = new StreamWriter(fs2))
+                        {
+                            writer.Write(JsonConvert.SerializeObject(userss));
+                        }
+                        //MessageBox.Show("Пользователь добавлен!");
+                    }
                 }
             }
         }
@@ -199,7 +214,7 @@ namespace WPFModernVerticalMenu.Classes
                 }
             }
             FileStream fs1 = new FileStream("users.json", FileMode.Truncate);
-            JsonSerializer.Serialize(fs1, users);
+            System.Text.Json.JsonSerializer.Serialize(fs1, users);
             fs1.Close();
         }
 
@@ -214,7 +229,7 @@ namespace WPFModernVerticalMenu.Classes
                 Family family = new Family();
                 family.MembersID.Add(user.ID);
                 families.Add(family);
-                JsonSerializer.Serialize(fs1, families);
+                System.Text.Json.JsonSerializer.Serialize(fs1, families);
                 fs1.Close();
                 foreach(User user1 in users)
                 {
@@ -225,7 +240,7 @@ namespace WPFModernVerticalMenu.Classes
                     }
                 }
                 FileStream fs2 = new FileStream("users.json", FileMode.Truncate);
-                JsonSerializer.Serialize(fs2, users);
+                System.Text.Json.JsonSerializer.Serialize(fs2, users);
                 fs2.Close();
                 MessageBox.Show("Файл и семья созданы!");
             }
@@ -236,7 +251,7 @@ namespace WPFModernVerticalMenu.Classes
                 Family family = new Family();
                 family.MembersID.Add(user.ID);
                 families.Add(family);
-                JsonSerializer.Serialize(fs2, families);
+                System.Text.Json.JsonSerializer.Serialize(fs2, families);
                 fs2.Close();
                 foreach (User user1 in users)
                 {
@@ -247,7 +262,7 @@ namespace WPFModernVerticalMenu.Classes
                     }
                 }
                 FileStream fs1 = new FileStream("users.json", FileMode.Truncate);
-                JsonSerializer.Serialize(fs1, users);
+                System.Text.Json.JsonSerializer.Serialize(fs1, users);
                 fs1.Close();
                 MessageBox.Show("Семья добавлена!");
             }
@@ -295,10 +310,10 @@ namespace WPFModernVerticalMenu.Classes
                             }
                         }
                         FileStream fs2 = new FileStream("users.json", FileMode.Truncate);
-                        JsonSerializer.Serialize(fs2, users);
+                        System.Text.Json.JsonSerializer.Serialize(fs2, users);
                         fs2.Close();
                         FileStream fs1 = new FileStream("families.json", FileMode.Truncate);
-                        JsonSerializer.Serialize(fs1, families);
+                        System.Text.Json.JsonSerializer.Serialize(fs1, families);
                         fs1.Close();
                         MessageBox.Show("Пользователь добавлен");
                         return;
@@ -352,10 +367,10 @@ namespace WPFModernVerticalMenu.Classes
                             }
                         }
                         FileStream fs2 = new FileStream("users.json", FileMode.Truncate);
-                        JsonSerializer.Serialize(fs2, users);
+                        System.Text.Json.JsonSerializer.Serialize(fs2, users);
                         fs2.Close();
                         FileStream fs1 = new FileStream("families.json", FileMode.Truncate);
-                        JsonSerializer.Serialize(fs1, families);
+                        System.Text.Json.JsonSerializer.Serialize(fs1, families);
                         fs1.Close();
                         MessageBox.Show("Пользователь удалён");
                         return;

@@ -28,7 +28,7 @@ namespace WPFModernVerticalMenu.Pages
         {
             InitializeComponent();
             currentUser = (User)Application.Current.Properties["CurrentUser"];
-            currentUser = data.GetUserByEmail(currentUser.Email);
+            currentUser = data.GetUserByEmail(currentUser.Email, "users.json");
             if (currentUser != null)
             {
                 textNameUser.Text = currentUser.Name;
@@ -117,7 +117,7 @@ namespace WPFModernVerticalMenu.Pages
             newBTN2.Click += new RoutedEventHandler(Button_Click_Delete);
             stackPanelFamily.Children.Add(newBTN2);
             currentUser = (User)Application.Current.Properties["CurrentUser"];
-            currentUser = data.GetUserByEmail(currentUser.Email);
+            currentUser = data.GetUserByEmail(currentUser.Email, "users.json");
         }
 
         private void Button_Click_Add(object sender, RoutedEventArgs e)
@@ -157,7 +157,7 @@ namespace WPFModernVerticalMenu.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             currentUser = (User)Application.Current.Properties["CurrentUser"];
-            currentUser = data.GetUserByEmail(currentUser.Email);
+            currentUser = data.GetUserByEmail(currentUser.Email, "users.json");
             textNameUser.Text = currentUser.Name;
             textIncomeUser.Text = $"Доход: {currentUser.Income} ₽";
             if (File.Exists(currentUser.ImageAvatar))

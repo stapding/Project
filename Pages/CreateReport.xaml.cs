@@ -214,7 +214,7 @@ namespace WPFModernVerticalMenu.Pages
                     fs1.Close();
                     MessageBox.Show("Отчёт добавлен!");
                     currentUser = (User)Application.Current.Properties["CurrentUser"];
-                    currentUser = data.GetUserByEmail(currentUser.Email);
+                    currentUser = data.GetUserByEmail(currentUser.Email, "users.json");
                 }
                 else
                 {
@@ -230,7 +230,7 @@ namespace WPFModernVerticalMenu.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             currentUser = (User)Application.Current.Properties["CurrentUser"];
-            currentUser = data.GetUserByEmail(currentUser.Email);
+            currentUser = data.GetUserByEmail(currentUser.Email, "users.json");
         }
     }
 }

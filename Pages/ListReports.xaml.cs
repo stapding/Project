@@ -28,7 +28,7 @@ namespace WPFModernVerticalMenu.Pages
         {
             InitializeComponent();
             currentUser = (User)Application.Current.Properties["CurrentUser"];
-            currentUser = data.GetUserByEmail(currentUser.Email);
+            currentUser = data.GetUserByEmail(currentUser.Email, "users.json");
             if (currentUser.Reports != null && currentUser.Reports.Count > 0)
             {
                 foreach (var report in currentUser.Reports)
@@ -48,7 +48,7 @@ namespace WPFModernVerticalMenu.Pages
                     data.DeleteReport(currentUser, (Report)listOfRequests.SelectedItem);
                     listOfRequests.Items.Clear();
                     currentUser = (User)Application.Current.Properties["CurrentUser"];
-                    currentUser = data.GetUserByEmail(currentUser.Email);
+                    currentUser = data.GetUserByEmail(currentUser.Email, "users.json");
                     foreach (var report in currentUser.Reports)
                     {
                         listOfRequests.Items.Add(report);

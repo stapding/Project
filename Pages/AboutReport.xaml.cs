@@ -49,7 +49,7 @@ namespace WPFModernVerticalMenu.Pages
             Bad_statuses = new List<string>();
 
             currentUser = (User)Application.Current.Properties["CurrentUser"];
-            currentUser = data.GetUserByEmail(currentUser.Email);
+            currentUser = data.GetUserByEmail(currentUser.Email, "users.json");
             foreach (Report report in currentUser.Reports)
             {
                 Total_expenses_month.Add(report.Total_expenses);

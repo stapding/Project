@@ -30,7 +30,7 @@ namespace WPFModernVerticalMenu.Pages
         {
             InitializeComponent();
             currentUser = (User)Application.Current.Properties["CurrentUser"];
-            currentUser = data.GetUserByEmail(currentUser.Email);
+            currentUser = data.GetUserByEmail(currentUser.Email, "users.json");
             tbAvatar.Text = currentUser.ImageAvatar;
             tbName.Text = currentUser.Name;
             tbIncome.Text = currentUser.Income.ToString();
